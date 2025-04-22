@@ -1,0 +1,72 @@
+---
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+import GameCard from "../components/GameCard.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+
+// Add year to each game and create game lists by year
+const currentYear = new Date().getFullYear();
+const gameYears = [
+	currentYear,
+	currentYear - 1,
+	currentYear - 2,
+	currentYear - 3,
+];
+
+// Create games with years
+const gamesWithYears = Array.from({ length: 16 }, (_, i) => ({
+	name: `Game ${i + 1}`,
+	link: `https://example.com/game/${i + 1}`,
+	image: `https://via.placeholder.com/150?text=Game+${i + 1}`,
+	score: `${(Math.random() * 5 + 5).toFixed(1)}`, // Score between 5.0 and 10.0
+	year: gameYears[Math.floor(Math.random() * gameYears.length)], // Randomly assign a year
+}));
+
+// Group games by year
+const gamesByYear: Record<number, typeof gamesWithYears> = {};
+for (const year of gameYears) {
+	gamesByYear[year] = gamesWithYears.filter((game) => game.year === year);
+}
+---
+
+<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
+  <div
+    class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
+  >
+    <div class="grid grid-cols-4 gap-6 p-6 w-full h-full">
+      {
+        /* The GameCard below will be the first item in the grid. Add more GameCard components here for more items. */
+      }
+      {
+        Object.keys(gamesByYear)
+          .sort((a, b) => parseInt(b) - parseInt(a)) // Sort years in descending order
+          .map((year) => (
+            <div class="col-span-4 mt-4 mb-2 first:mt-0">
+              <h2 class="text-2xl font-bold">{year}</h2>
+              <div class="grid grid-cols-4 gap-6 mt-4">
+                {gamesByYear[parseInt(year)].map(
+                  (game: {
+                    name: string;
+                    link: string;
+                    image: string;
+                    score: string;
+                    year: number;
+                  }) => (
+                    <div class="card-base z-10 px-9 py-6 relative w-full">
+                      <GameCard
+                        name={game.name}
+                        link={game.link}
+                        image={game.image}
+                        score={game.score}
+                      />
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          ))
+      }
+    </div>
+  </div>
+</MainGridLayout>

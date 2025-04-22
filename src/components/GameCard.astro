@@ -1,0 +1,16 @@
+---
+//src/components/Card.astro
+const { name, link, image, score } = Astro.props;
+
+import "../styles/game-card.css";
+---
+
+<div class="card-container">
+  <div class="image-container">
+    <img src={image} alt={name} />
+  </div>
+  <div class="info-container">
+    <h1>{name}</h1>
+    <p>{score}</p>
+  </div>
+</div>

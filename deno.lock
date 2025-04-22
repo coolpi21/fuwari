@@ -1,0 +1,112 @@
+{
+  "version": "4",
+  "specifiers": {
+    "jsr:@std/cli@^1.0.16": "1.0.16",
+    "jsr:@std/encoding@^1.0.9": "1.0.9",
+    "jsr:@std/fmt@^1.0.6": "1.0.6",
+    "jsr:@std/html@^1.0.3": "1.0.3",
+    "jsr:@std/http@1.0": "1.0.14",
+    "jsr:@std/media-types@^1.1.0": "1.1.0",
+    "jsr:@std/net@^1.0.4": "1.0.4",
+    "jsr:@std/path@1.0": "1.0.8",
+    "jsr:@std/path@^1.0.8": "1.0.8",
+    "jsr:@std/streams@^1.0.9": "1.0.9"
+  },
+  "jsr": {
+    "@std/cli@1.0.16": {
+      "integrity": "02df293099c35b9e97d8ca05f57f54bd1ee08134f25d19a4756b3924695f4b00"
+    },
+    "@std/encoding@1.0.9": {
+      "integrity": "025b8f18eb1749bc30d1353bf48b77d1eb5e35610220fa226f5a046b9240c5d7"
+    },
+    "@std/fmt@1.0.6": {
+      "integrity": "a2c56a69a2369876ddb3ad6a500bb6501b5bad47bb3ea16bfb0c18974d2661fc"
+    },
+    "@std/html@1.0.3": {
+      "integrity": "7a0ac35e050431fb49d44e61c8b8aac1ebd55937e0dc9ec6409aa4bab39a7988"
+    },
+    "@std/http@1.0.14": {
+      "integrity": "bfc4329d975dff2abd8170e83e37deb454fbc678fec3fdd2ef5b03d92768a4ef",
+      "dependencies": [
+        "jsr:@std/cli",
+        "jsr:@std/encoding",
+        "jsr:@std/fmt",
+        "jsr:@std/html",
+        "jsr:@std/media-types",
+        "jsr:@std/net",
+        "jsr:@std/path@^1.0.8",
+        "jsr:@std/streams"
+      ]
+    },
+    "@std/media-types@1.1.0": {
+      "integrity": "c9d093f0c05c3512932b330e3cc1fe1d627b301db33a4c2c2185c02471d6eaa4"
+    },
+    "@std/net@1.0.4": {
+      "integrity": "2f403b455ebbccf83d8a027d29c5a9e3a2452fea39bb2da7f2c04af09c8bc852"
+    },
+    "@std/path@1.0.8": {
+      "integrity": "548fa456bb6a04d3c1a1e7477986b6cffbce95102d0bb447c67c4ee70e0364be"
+    },
+    "@std/streams@1.0.9": {
+      "integrity": "a9d26b1988cdd7aa7b1f4b51e1c36c1557f3f252880fa6cc5b9f37078b1a5035"
+    }
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@astrojs/check@~0.9.4",
+        "npm:@astrojs/node@^9.2.0",
+        "npm:@astrojs/rss@^4.0.11",
+        "npm:@astrojs/sitemap@^3.3.0",
+        "npm:@astrojs/svelte@7.0.10",
+        "npm:@astrojs/tailwind@^6.0.2",
+        "npm:@astrojs/ts-plugin@^1.10.4",
+        "npm:@biomejs/biome@1.9.4",
+        "npm:@deno/astro-adapter@0.3",
+        "npm:@fontsource-variable/jetbrains-mono@^5.2.5",
+        "npm:@fontsource/roboto@^5.2.5",
+        "npm:@iconify-json/fa6-brands@^1.2.5",
+        "npm:@iconify-json/fa6-regular@^1.2.3",
+        "npm:@iconify-json/fa6-solid@^1.2.3",
+        "npm:@iconify-json/material-symbols@^1.2.20",
+        "npm:@iconify/svelte@^4.2.0",
+        "npm:@rollup/plugin-yaml@^4.1.2",
+        "npm:@swup/astro@^1.6.0",
+        "npm:@tailwindcss/typography@~0.5.16",
+        "npm:@types/markdown-it@^14.1.2",
+        "npm:@types/mdast@^4.0.4",
+        "npm:@types/sanitize-html@^2.15.0",
+        "npm:astro-compress@^2.3.8",
+        "npm:astro-icon@^1.1.5",
+        "npm:astro@5.7.4",
+        "npm:hastscript@^9.0.1",
+        "npm:katex@~0.16.22",
+        "npm:markdown-it@^14.1.0",
+        "npm:mdast-util-to-string@4",
+        "npm:node-ssh@^13.2.1",
+        "npm:overlayscrollbars@^2.11.1",
+        "npm:pagefind@^1.3.0",
+        "npm:photoswipe@^5.4.4",
+        "npm:postcss-import@^16.1.0",
+        "npm:postcss-nesting@^13.0.1",
+        "npm:reading-time@^1.5.0",
+        "npm:rehype-autolink-headings@^7.1.0",
+        "npm:rehype-components@0.3",
+        "npm:rehype-katex@^7.0.1",
+        "npm:rehype-slug@6",
+        "npm:remark-directive-rehype@~0.4.2",
+        "npm:remark-directive@^3.0.1",
+        "npm:remark-github-admonitions-to-directives@^1.0.5",
+        "npm:remark-math@6",
+        "npm:remark-sectionize@^2.1.0",
+        "npm:sanitize-html@^2.16.0",
+        "npm:sharp@~0.34.1",
+        "npm:stylus@0.64",
+        "npm:svelte@^5.28.1",
+        "npm:tailwindcss@^3.4.17",
+        "npm:typescript@^5.8.3",
+        "npm:unist-util-visit@5"
+      ]
+    }
+  }
+}

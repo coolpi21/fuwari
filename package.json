@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build && pagefind --site dist",
-    "preview": "astro preview",
+    "preview": "npx deno run --allow-net --allow-read --allow-env --allow-run dist/server/entry.mjs",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",
     "new-post": "node scripts/new-post.js",
@@ -64,6 +64,7 @@
     "@types/markdown-it": "^14.1.2",
     "@types/mdast": "^4.0.4",
     "@types/sanitize-html": "^2.15.0",
+    "node-ssh": "^13.2.1",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^13.0.1"
   },
