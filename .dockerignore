@@ -1,0 +1,6 @@
+# .dockerignore 内容
+node_modules/
+.DS_Store
+.git/
+.env
+dist/

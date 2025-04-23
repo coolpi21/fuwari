@@ -5,46 +5,122 @@ import GameCard from "../components/GameCard.astro";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 
-// Add year to each game and create game lists by year
-const currentYear = new Date().getFullYear();
-const gameYears = [
-	currentYear,
-	currentYear - 1,
-	currentYear - 2,
-	currentYear - 3,
+const games = [
+	{
+		name: "卧龙 苍天陨落",
+		link: "https://www.douban.com/game/35927413/",
+		image: "https://image.ahalo.online/games/AE9H7B.png",
+		year: new Date("2023/04/01").getTime(),
+	},
+	{
+		name: "最终幻想16 Final Fantasy XVI",
+		link: "https://www.douban.com/game/35206461/",
+		image: "https://image.ahalo.online/games/kmYRSw.png",
+		year: new Date("2023/07/04").getTime(),
+	},
+	{
+		name: "伊苏10 イースX -NORDICS-",
+		link: "https://www.douban.com/game/36187939/",
+		image: "https://image.ahalo.online/games/L7CZDj.png",
+		year: new Date("2023/10/14").getTime(),
+	},
+	{
+		name: "伊苏8：丹娜的陨涕日 イースVIII -Lacrimosa of DANA-",
+		link: "https://www.douban.com/game/26767452/",
+		image: "https://image.ahalo.online/games/Fz5M8m.png",
+		year: new Date("2023/10/17").getTime(),
+	},
+	{
+		name: "伊苏9：怪人之夜 イースIX -モンストルム・ノクス-",
+		link: "https://www.douban.com/game/30408315/",
+		image: "https://image.ahalo.online/games/6r0ERs.png",
+		year: new Date("2023/10/21").getTime(),
+	},
+	{
+		name: "漫威蜘蛛侠2 Marvel's Spider-Man 2",
+		link: "https://www.douban.com/game/35151783/",
+		image: "https://image.ahalo.online/games/rbaiar.png",
+		year: new Date("2023/10/24").getTime(),
+	},
+	{
+		name: "最终幻想7 重制版",
+		link: "https://www.douban.com/game/26425696/",
+		image: "https://image.ahalo.online/games/wR3TIC.png",
+		year: new Date("2023/10/28").getTime(),
+	},
+	{
+		name: "十三机兵防卫圈",
+		link: "https://www.douban.com/game/26615836/",
+		image: "https://image.ahalo.online/games/Zt0K8Z.png",
+		year: new Date("2023/11/02").getTime(),
+	},
+	{
+		name: "如龙7 光与暗的去向",
+		link: "https://www.douban.com/game/34809193/",
+		image: "https://image.ahalo.online/games/cEHuz8.png",
+		year: new Date("2023/11/13").getTime(),
+	},
+	{
+		name: "如龙7外传 无名之龙",
+		link: "https://www.douban.com/game/36093172/",
+		image: "https://image.ahalo.online/games/95UKL4.png",
+		year: new Date("2023/11/13").getTime(),
+	},
+	{
+		name: "战神4",
+		link: "https://www.douban.com/game/26817284/",
+		image: "https://image.ahalo.online/games/G6gGuE.png",
+		year: new Date("2023/11/25").getTime(),
+	},
+	{
+		name: "战神：诸神黄昏",
+		link: "https://www.douban.com/game/35205915/",
+		image: "https://image.ahalo.online/games/BBIU50.png",
+		year: new Date("2023/11/18").getTime(),
+	},
+	{
+		name: "女神异闻录3 重制版",
+		link: "https://www.douban.com/game/36352772/",
+		image: "https://image.ahalo.online/games/VzK68N.png",
+		year: new Date("2024/05/02").getTime(),
+	},
 ];
 
-// Create games with years
-const gamesWithYears = Array.from({ length: 16 }, (_, i) => ({
-	name: `Game ${i + 1}`,
-	link: `https://example.com/game/${i + 1}`,
-	image: `https://via.placeholder.com/150?text=Game+${i + 1}`,
-	score: `${(Math.random() * 5 + 5).toFixed(1)}`, // Score between 5.0 and 10.0
-	year: gameYears[Math.floor(Math.random() * gameYears.length)], // Randomly assign a year
-}));
+// 根据年份分组游戏
+const gamesByYear = games.reduce((acc, game) => {
+	const year = new Date(game.year).getFullYear();
+	if (!acc[year]) {
+		acc[year] = [];
+	}
+	acc[year].push({
+		...game,
+		displayYear: new Date(game.year).toLocaleDateString("zh-CN", {
+			year: "numeric",
+			month: "numeric",
+			day: "numeric",
+		}),
+	});
+	return acc;
+}, {});
 
-// Group games by year
-const gamesByYear: Record<number, typeof gamesWithYears> = {};
-for (const year of gameYears) {
-	gamesByYear[year] = gamesWithYears.filter((game) => game.year === year);
-}
+// 对每个年份组内的游戏按日期降序排序（最新的在前）
+Object.keys(gamesByYear).forEach((year) => {
+	gamesByYear[year].sort((a, b) => b.year - a.year);
+});
 ---
 
 <MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
   <div
     class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
   >
-    <div class="grid grid-cols-4 gap-6 p-6 w-full h-full">
-      {
-        /* The GameCard below will be the first item in the grid. Add more GameCard components here for more items. */
-      }
+    <div class="w-full h-full p-6">
       {
         Object.keys(gamesByYear)
           .sort((a, b) => parseInt(b) - parseInt(a)) // Sort years in descending order
           .map((year) => (
-            <div class="col-span-4 mt-4 mb-2 first:mt-0">
-              <h2 class="text-2xl font-bold">{year}</h2>
-              <div class="grid grid-cols-4 gap-6 mt-4">
+            <div class="mt-4 mb-2 first:mt-0">
+              <h2 class="text-2xl font-bold text-black/75 dark:text-white/75">{year}</h2>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
                 {gamesByYear[parseInt(year)].map(
                   (game: {
                     name: string;
@@ -53,14 +129,12 @@ for (const year of gameYears) {
                     score: string;
                     year: number;
                   }) => (
-                    <div class="card-base z-10 px-9 py-6 relative w-full">
                       <GameCard
                         name={game.name}
                         link={game.link}
-                        image={game.image}
-                        score={game.score}
+                        image={game.image}  
+                        year={game.year}
                       />
-                    </div>
                   )
                 )}
               </div>
