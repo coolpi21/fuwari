@@ -8,12 +8,16 @@ variables:
 
 build:
   stage: build
+  tags:
+    - shell
   script:
     - docker build -t $IMAGE_TAG .
     - docker tag $IMAGE_TAG $APP_NAME:latest
 
 deploy:
   stage: deploy
+  tags:
+    - shell
   script:
     # 停止并删除旧容器（如果存在）
     - docker stop $APP_NAME || true
