@@ -7,7 +7,7 @@ import { Badge, Card } from "accessible-astro-components";
 
 <Card class="text-black/75 dark:text-white/75" img={image} title={name}>
   <span slot="meta">
-    <Badge type="info" animateOnHover>{type}</Badge>
+    <Badge type="info">{type}</Badge>
   </span>
   <p class="text-sm">
     攻略时间: {
@@ -22,10 +22,19 @@ import { Badge, Card } from "accessible-astro-components";
 
 <style>
   :global(.card) {
+    max-inline-size: 100%; /* Override the 60ch limit */
     border: 2px solid oklch(0.65 0.125 var(--hue));
   }
 
   :global(.card:hover) {
     box-shadow: 0 4px 6px -1px oklch(0.65 0.125 var(--hue));
+  }
+
+  /* 在移动端隐藏图片 */
+  @media (max-width: 767px) {
+    /* 调整图片区域高度 */
+    :global(.card .image) {
+      block-size: 180px; /* 默认是250px，这里调低到180px */
+    }
   }
 </style>

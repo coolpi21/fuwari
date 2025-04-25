@@ -13,6 +13,14 @@ interface Game {
   year: number;
 }
 
+interface GameWithDisplayYear extends Game {
+  displayYear: string;
+}
+
+interface GamesByYear {
+  [year: number]: GameWithDisplayYear[];
+}
+
 const games: Game[] = [
   {
     name: "卧龙 苍天陨落",
@@ -108,7 +116,7 @@ const games: Game[] = [
 ];
 
 // 根据年份分组游戏
-const gamesByYear = games.reduce((acc, game) => {
+const gamesByYear: GamesByYear = games.reduce<GamesByYear>((acc, game) => {
   const year = new Date(game.year).getFullYear();
   if (!acc[year]) {
     acc[year] = [];
@@ -125,37 +133,35 @@ const gamesByYear = games.reduce((acc, game) => {
 }, {});
 
 // 对每个年份组内的游戏按日期降序排序（最新的在前）
-Object.keys(gamesByYear).forEach((year) => {
-  gamesByYear[year].sort((a, b) => b.year - a.year);
-});
+for (const year of Object.keys(gamesByYear)) {
+  gamesByYear[Number(year)].sort(
+    (a: GameWithDisplayYear, b: GameWithDisplayYear) => b.year - a.year
+  );
+}
 ---
 
 <MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
-  <div
-    class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
-  >
-    <div class="w-full h-full p-6">
-      {
-        Object.keys(gamesByYear)
-          .sort((a, b) => parseInt(b) - parseInt(a)) // Sort years in descending order
-          .map((year) => (
-            <div class="mt-4 mb-2 first:mt-0">
-              <h2 class="text-2xl font-bold text-black/75 dark:text-white/75">
-                {year}
-              </h2>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-                {gamesByYear[parseInt(year)].map((game: Game) => (
-                  <GameCard
-                    name={game.name}
-                    type={game.type}
-                    image={game.image}
-                    year={game.year}
-                  />
-                ))}
-              </div>
+  <div class="w-full h-full">
+    {
+      Object.keys(gamesByYear)
+        .sort((a, b) => parseInt(b) - parseInt(a)) // Sort years in descending order
+        .map((year) => (
+          <div class="mt-4 mb-2 first:mt-0">
+            <h2 class="text-2xl font-bold text-black/75 dark:text-white/75">
+              {year}
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+              {gamesByYear[parseInt(year)].map((game: GameWithDisplayYear) => (
+                <GameCard
+                  name={game.name}
+                  type={game.type}
+                  image={game.image}
+                  year={game.year}
+                />
+              ))}
             </div>
-          ))
-      }
-    </div>
+          </div>
+        ))
+    }
   </div>
 </MainGridLayout>
