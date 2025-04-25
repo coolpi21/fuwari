@@ -29,6 +29,10 @@ export const siteConfig: SiteConfig = {
 		depth: 2, // Maximum heading depth to show in the table, from 1 to 3
 	},
 	favicon: [
+		{
+			src: "/favicon/favicon.ico", // Path of the favicon, relative to the /public directory
+			sizes: "32x32", // (Optional) Size of the favicon, set only if you have favicons of different sizes
+		},
 		// Leave this array empty to use the default favicon
 		// {
 		//   src: '/favicon/icon.png',    // Path of the favicon, relative to the /public directory
@@ -53,7 +57,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "https://image.ahalo.online/games/DQc1RL.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	avatar: "https://image.ahalo.ren/games/DQc1RL.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "C>AI",
 	bio: "",
 	links: [

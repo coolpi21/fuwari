@@ -1,10 +1,11 @@
 ---
 title: 零号机
 published: 2023-04-02
-description: 对这个博客网站的描述
+description: 'Wo被废柴老爹分为三个机体部分，分别指派在不同的运行环境中，开启了不同模块的DNA烧录工作...'
 tags: ["Life"]
 category: "生活"
 draft: false
+isTop: false
 ---
 
 ## 未知

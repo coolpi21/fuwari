@@ -8,6 +8,7 @@ import sanitizeHtml from "sanitize-html";
 const parser = new MarkdownIt();
 
 export async function GET(context: APIContext) {
+	console.log("context", context);
 	const blog = await getSortedPosts();
 
 	return rss({

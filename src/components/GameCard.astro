@@ -1,17 +1,24 @@
 ---
 //src/components/Card.astro
-const { name, link, image, year } = Astro.props;
+const { name, type, image, year } = Astro.props;
 
-import { Card } from "accessible-astro-components";
+console.log(type);
+import { Badge, Card } from "accessible-astro-components";
 ---
 
-<Card
-  class="text-black/75 dark:text-white/75"
-  img={image}
-  url={link}
-  title={name}
->
-  <p class="text-sm ">攻略时间: {new Date(year).toLocaleDateString("zh-CN", { year: "numeric", month: "numeric", day: "numeric" })}</p>
+<Card class="text-black/75 dark:text-white/75" img={image} title={name}>
+  <span slot="meta">
+    <Badge type="info" animateOnHover>{type}</Badge>
+  </span>
+  <p class="text-sm">
+    攻略时间: {
+      new Date(year).toLocaleDateString("zh-CN", {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      })
+    }
+  </p>
 </Card>
 
 <style>

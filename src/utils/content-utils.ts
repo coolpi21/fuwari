@@ -22,7 +22,9 @@ export async function getSortedPosts() {
 		sorted[i].data.prevTitle = sorted[i + 1].data.title;
 	}
 
-	return sorted;
+	const topPosts = sorted.filter((post) => post.data.isTop);
+
+	return [...topPosts, ...sorted.filter((post) => !post.data.isTop)];
 }
 
 export type Tag = {
