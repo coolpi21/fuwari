@@ -14,7 +14,7 @@ COPY . .
 RUN pnpm run build
 
 # 阶段2: 使用 Deno 运行静态服务器
-FROM denoland/deno:alpine-2.2.12
+FROM denoland/deno:2.2.12
 WORKDIR /app
 COPY --from=builder /app/dist ./dist
 EXPOSE 9999
