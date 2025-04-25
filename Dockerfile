@@ -16,6 +16,7 @@ RUN pnpm run build
 # 阶段2: 使用 Deno 运行静态服务器
 FROM denoland/deno:alpine-2.2.11
 WORKDIR /app
+RUN deno cache jsr:@std/http/file-server
 COPY --from=builder /app/dist ./dist
 EXPOSE 9999
 CMD ["run", "-A", "jsr:@std/http/file-server", "--port=9999", "dist"]
