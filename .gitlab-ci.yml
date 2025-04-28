@@ -9,7 +9,7 @@ variables:
 build:
   stage: build
   tags:
-    - shell
+    - docker
   script:
     - docker build -t $IMAGE_TAG .
     - docker tag $IMAGE_TAG $APP_NAME:latest
@@ -17,12 +17,12 @@ build:
 deploy:
   stage: deploy
   tags:
-    - shell
+    - docker
   script:
     # 停止并删除旧容器（如果存在）
     - docker stop $APP_NAME || true
     - docker rm $APP_NAME || true
     # 启动新容器
-    - docker run -d --name $APP_NAME -p 17000:9999 $APP_NAME:latest
+    - docker run -d --name $APP_NAME -p 17000:9999 --restart unless-stopped $APP_NAME:latest
   only:
     - main
