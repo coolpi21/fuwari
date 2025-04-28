@@ -5,7 +5,7 @@ stages:
 variables:
   APP_NAME: astro-blog
   IMAGE_TAG: $APP_NAME:$CI_COMMIT_SHORT_SHA
-  DOCKER_HOST: tcp://43.154.188.198:2375 # 指向 DinD 服务
+  DOCKER_HOST: tcp://http://43.154.188.198/.:2375 # 指向 DinD 服务
   DOCKER_TLS_CERTDIR: "" # 禁用 TLS（仅测试环境适用）
 
 services:
