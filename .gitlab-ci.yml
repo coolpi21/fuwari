@@ -17,7 +17,6 @@ build:
     - docker
   image: docker:stable # 使用包含 Docker 客户端的镜像
   script:
-    - export DOCKER_HOST=tcp://$(getent hosts docker | awk '{ print $1 }'):2375
     - docker build -t $IMAGE_TAG .
     - docker tag $IMAGE_TAG $APP_NAME:latest
 
