@@ -120,14 +120,8 @@ const bannerOffset =
       data-domain="blog.clife.cafe"
       src="https://stats.clife.cafe/js/script.outbound-links.js"></script>
     <script>
-      window.plausible =
-        window.plausible ||
-        function () {
-          (window.plausible.q = window.plausible.q || []).push(arguments);
-        };
-    </script>
-
-    <script>
+      // Use plausible queue method for event tracking
+      // See: https://plausible.io/docs/script-extensions
       window.plausible =
         window.plausible ||
         function () {

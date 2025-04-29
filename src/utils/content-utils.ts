@@ -2,6 +2,12 @@ import { getCollection } from "astro:content";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 
+// get games content
+export async function getGames(){
+	const allGames = await getCollection("games");
+	return allGames;
+}
+
 export async function getSortedPosts() {
 	const allBlogPosts = await getCollection("posts", ({ data }) => {
 		return import.meta.env.PROD ? data.draft !== true : true;

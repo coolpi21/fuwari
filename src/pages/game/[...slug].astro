@@ -1,0 +1,69 @@
+---
+import MainGridLayout from "../../layouts/MainGridLayout.astro";
+
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+import Markdown from "../../components/misc/Markdown.astro";
+import I18nKey from "../../i18n/i18nKey";
+import { i18n } from "../../i18n/translation";
+import { getGames } from "../../utils/content-utils";
+
+export async function getStaticPaths() {
+  const gamesEntries = await getGames();
+  console.log(gamesEntries);
+  return gamesEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+
+const { Content } = await entry.render();
+
+console.log("content", Content);
+// const { remarkPluginFrontmatter } = await entry.render();
+
+// if (!gamesPost) {
+//   throw new Error("About page content not found");
+// }
+
+// console.log("gamesPost", gamesPost);
+
+// const { Content } = await render(aboutPost);
+---
+
+<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
+  <div
+    class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
+  >
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+      <!-- title -->
+      <div class="relative onload-animation">
+        <div
+          data-pagefind-body
+          data-pagefind-weight="10"
+          data-pagefind-meta="title"
+          class="transition w-full block font-bold mb-3
+                    text-3xl md:text-[2.25rem]/[2.75rem]
+                    text-black/90 dark:text-white/90
+                    md:before:w-1 before:h-5 before:rounded-md before:bg-[var(--primary)]
+                    before:absolute before:top-[0.75rem] before:left-[-1.125rem]"
+        >
+          {entry.data.title}
+        </div>
+      </div>
+
+      <!-- metadata -->
+      <div class="onload-animation">
+        <div
+          class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"
+        >
+        </div>
+      </div>
+      <Markdown class="mt-2">
+        <Content />
+      </Markdown>
+    </div>
+  </div>
+</MainGridLayout>

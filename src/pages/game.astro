@@ -24,7 +24,7 @@ interface GamesByYear {
 const games: Game[] = [
   {
     name: "卧龙 苍天陨落",
-    link: "https://www.douban.com/game/35927413/",
+    link: "p3r",
     image: "https://image.ahalo.ren/games/AE9H7B.png",
     type: "ARPG",
     year: new Date("2023/04/01").getTime(),
@@ -108,7 +108,7 @@ const games: Game[] = [
   },
   {
     name: "女神异闻录3 重制版",
-    link: "https://www.douban.com/game/36352772/",
+    link: "p3r",
     image: "https://image.ahalo.ren/games/VzK68N.png",
     type: "JRPG",
     year: new Date("2024/05/02").getTime(),
@@ -154,6 +154,7 @@ for (const year of Object.keys(gamesByYear)) {
               {gamesByYear[parseInt(year)].map((game: GameWithDisplayYear) => (
                 <GameCard
                   name={game.name}
+                  link={game.link}
                   type={game.type}
                   image={game.image}
                   year={game.year}

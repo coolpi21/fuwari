@@ -1,11 +1,16 @@
 ---
 //src/components/Card.astro
-const { name, type, image, year } = Astro.props;
+const { name, type, image, year, link } = Astro.props;
 
 import { Badge, Card } from "accessible-astro-components";
 ---
 
-<Card class="text-black/75 dark:text-white/75" img={image} title={name}>
+<Card
+  class="text-black/75 dark:text-white/75"
+  url={`/game/${link}/`}
+  img={image}
+  title={name}
+>
   <span slot="meta">
     <Badge type="info">{type}</Badge>
   </span>
