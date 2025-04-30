@@ -8,7 +8,7 @@
     "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
@@ -19,15 +19,15 @@
     "source.organizeImports.biome": "always"
   },
   "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   }
 }

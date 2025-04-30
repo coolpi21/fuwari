@@ -1,0 +1,53 @@
+---
+interface FriendLink {
+	name: string;
+	description: string;
+	avatar: string;
+	url: string;
+}
+
+interface Props {
+	links: FriendLink[];
+	class?: string;
+}
+
+const { links, class: className } = Astro.props;
+---
+
+<div class:list={["friend-links-container", className]}>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {
+      links.map((link) => (
+        <a 
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="friend-link flex items-center gap-4 p-4 rounded-lg  transition-all  hover:shadow-md"
+        >
+          <div class="avatar-container w-20 h-20 flex-shrink-0 overflow-hidden rounded-lg">
+            <img 
+              src={link.avatar} 
+              alt={`${link.name}'s avatar`} 
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-xl font-bold text-black/80 dark:text-white/80">{link.name}</h3>
+            <p class="text-sm text-black/60 dark:text-white/60 mt-1">{link.description}</p>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .friend-link {
+    background-color: var(--bg-card, #ffffff);
+  }
+
+  :global(.dark) .friend-link {
+    background-color: var(--bg-card, #1e1e1e);
+  }
+</style> 
