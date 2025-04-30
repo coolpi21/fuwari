@@ -30,18 +30,4 @@ jobs:
           SERVER_USER: ${{ secrets.SERVER_USER }}
           SERVER_PATH: /home/fuwari
         run: |
-          ssh $SERVER_USER@$SERVER_IP << 'EOF'
-            cd $SERVER_PATH
-            git pull
-            
-            # Remove the container
-            docker stop fuwari || true
-            docker rm -f fuwari || true
-            
-            # Rebuild and restart the container
-            docker compose build
-            docker compose up -d
-            
-            # Clean up unused images
-            docker image prune -f
-          EOF
+          ssh $SERVER_USER@$SERVER_IP "cd $SERVER_PATH && git pull && docker stop fuwari || true && docker rm -f fuwari || true && docker compose build && docker compose up -d && docker image prune -f"
