@@ -34,8 +34,9 @@ jobs:
             cd $SERVER_PATH
             git pull
             
-            # Stop the existing container
-            docker compose down || true
+            # Remove the container
+            docker stop fuwari || true
+            docker rm -f fuwari || true
             
             # Rebuild and restart the container
             docker compose build
