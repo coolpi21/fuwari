@@ -28,6 +28,6 @@ jobs:
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
-          SERVER_PATH: /home/blog/fuwari
+          SERVER_PATH: fuwari
         run: |
           ssh $SERVER_USER@$SERVER_IP "cd $SERVER_PATH && git pull && docker stop fuwari || true && docker rm -f fuwari || true && docker compose build && docker compose up -d && docker image prune -f"
