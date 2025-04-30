@@ -1,0 +1,46 @@
+name: Deploy to Self-hosted Server
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add host key
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -t rsa ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PATH: /home/fuwari
+        run: |
+          ssh $SERVER_USER@$SERVER_IP << 'EOF'
+            cd $SERVER_PATH
+            git pull
+            
+            # Stop the existing container
+            docker compose down || true
+            
+            # Rebuild and restart the container
+            docker compose build
+            docker compose up -d
+            
+            # Clean up unused images
+            docker image prune -f
+          EOF
