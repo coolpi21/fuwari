@@ -23,6 +23,13 @@ interface GamesByYear {
 
 const games: Game[] = [
 	{
+		name: "光与影：33号远征队",
+		link: "expedition_33",
+		image: "https://image.ahalo.ren/games/expedition_33.jpg",
+		type: "JRPGF",
+		year: new Date("2025/05/02").getTime(),
+	},
+	{
 		name: "卧龙 苍天陨落",
 		link: "p3r",
 		image: "https://image.ahalo.ren/games/AE9H7B.png",
@@ -141,28 +148,30 @@ for (const year of Object.keys(gamesByYear)) {
 ---
 
 <MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
-  <div class="w-full h-full">
-    {
-      Object.keys(gamesByYear)
-        .sort((a, b) => parseInt(b) - parseInt(a)) // Sort years in descending order
-        .map((year) => (
-          <div class="mt-4 mb-2 first:mt-0">
-            <h2 class="text-2xl font-bold text-black/75 dark:text-white/75">
-              {year}
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-              {gamesByYear[parseInt(year)].map((game: GameWithDisplayYear) => (
-                <GameCard
-                  name={game.name}
-                  link={game.link}
-                  type={game.type}
-                  image={game.image}
-                  year={game.year}
-                />
-              ))}
-            </div>
-          </div>
-        ))
-    }
-  </div>
+	<div class="w-full h-full">
+		{
+			Object.keys(gamesByYear)
+				.sort((a, b) => parseInt(b) - parseInt(a)) // Sort years in descending order
+				.map((year) => (
+					<div class="mt-4 mb-2 first:mt-0">
+						<h2 class="text-2xl font-bold text-black/75 dark:text-white/75">
+							{year}
+						</h2>
+						<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+							{gamesByYear[parseInt(year)].map(
+								(game: GameWithDisplayYear) => (
+									<GameCard
+										name={game.name}
+										link={game.link}
+										type={game.type}
+										image={game.image}
+										year={game.year}
+									/>
+								),
+							)}
+						</div>
+					</div>
+				))
+		}
+	</div>
 </MainGridLayout>
