@@ -14,3 +14,19 @@
 
 老了，回过头翻翻，想想也是挺美好的。
 
+# 现役设备
+
+- iPhone 15 Pro Max
+- OPPO Find X8 Ultra
+- Mac mini M4 Pro
+- MacBook Air M4
+- Apple Watch Ultra
+- PlayStation 5
+- AirPods 4
+- B&W Pi8
+- Apple Magic Trackpad
+- ROG Swift OLED PG27UCDM
+- ROG Strix Scope RX II
+- Logitech G Pro X SUPERLIGHT 2
+- BenQ ScreenBar Pro
+
