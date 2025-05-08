@@ -1,0 +1,19 @@
+<script is:inline type="module">
+  // Only load Waline when needed (lazy load)
+  if (document.querySelector('#waline')) {
+    import('https://unpkg.com/@waline/client@v3/dist/waline.js')
+      .then(({ init }) => {
+        console.log('Waline script loaded, initializing...');
+        init({
+          el: '#waline',
+          serverURL: 'https://waline.clife.cafe',
+          path: window.location.pathname,
+          dark: 'html[data-theme="dark"]',
+          imageUploader: false,
+          emoji: false,
+          reaction: false,
+        });
+      })
+      .catch(err => console.error('Failed to load Waline:', err));
+  }
+</script> 

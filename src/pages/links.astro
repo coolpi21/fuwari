@@ -2,36 +2,36 @@
 import { getEntry } from "astro:content";
 import { render } from "astro:content";
 import FriendLinks from "../components/FriendLinks.astro";
+import WalineScript from "../components/WalineScript.astro";
 import Markdown from "../components/misc/Markdown.astro";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-
 const friendLinks = [
-	{
-		name: "当下",
-		description: "每月空瓶日记～",
-		avatar:
-			"https://image.ahalo.ren/games/_cache_images_05edeab0826178d152ba7833736e2610_webp-jpg-800-None.webp",
-		url: "https://blog.fueis.com/",
-	},
-	{
-		name: "Randy's Blog",
-		description: "爱写作与思考的程序员",
-		avatar: "https://image.ahalo.ren/games/randy blog.jpg",
-		url: "https://lutaonan.com/",
-	},
-	{
-		name: "静かな森",
-		description: "致虚极，守静笃。",
-		avatar: "https://image.ahalo.ren/games/sCdwsT.png",
-		url: "https://innei.in/",
-	},
+  {
+    name: "当下",
+    description: "每月空瓶日记～",
+    avatar:
+      "https://image.ahalo.ren/games/_cache_images_05edeab0826178d152ba7833736e2610_webp-jpg-800-None.webp",
+    url: "https://blog.fueis.com/",
+  },
+  {
+    name: "Randy's Blog",
+    description: "爱写作与思考的程序员",
+    avatar: "https://image.ahalo.ren/games/randy blog.jpg",
+    url: "https://lutaonan.com/",
+  },
+  {
+    name: "静かな森",
+    description: "致虚极，守静笃。",
+    avatar: "https://image.ahalo.ren/games/sCdwsT.png",
+    url: "https://innei.in/",
+  },
 ];
 const linksInfo = await getEntry("spec", "links-info");
 
 if (!linksInfo) {
-	throw new Error("Links info not found");
+  throw new Error("Links info not found");
 }
 
 const { Content } = await render(linksInfo);
@@ -43,29 +43,16 @@ const { Content } = await render(linksInfo);
     <FriendLinks links={friendLinks} class="mt-4" />
     <div id="waline"></div>
   </div>
+  <WalineScript />
 </MainGridLayout>
 
-<script is:inline defer type="module">
-  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
-
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    init({
-      el: '#waline',
-      serverURL: 'https://waline.clife.cafe',
-      path: window.location.pathname, // Keep path dynamic for different pages if this component is reused
-      dark: 'html[data-theme="dark"]', // Set initial theme based on stored preference or system setting
-      imageUploader: false,
-      emoji: false,
-      reaction: false,
-    });
-  });
-</script> 
-
 <style is:global>
-.wl-panel {
-  margin: 2rem 0 0 0;
-  border: 1px solid var(--hue);
-}
-</style>
+  .wl-comment {
+    margin: 2rem 0 0 0;
+  }
 
+  .wl-panel {
+    margin: 0;
+    border: 1px solid var(--hue);
+  }
+</style>
