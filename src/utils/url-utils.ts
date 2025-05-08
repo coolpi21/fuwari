@@ -23,7 +23,7 @@ export function getTagUrl(tag: string): string {
 	// use common encoding function
 	const encodedTag = encodePathSegment(tag);
 	const tagUrl = `/archive/tag/${encodedTag}/`;
-	console.log(`Generating URL for tag "${tag.trim()}" => "${tagUrl}"`);
+	// console.log(`Generating URL for tag "${tag.trim()}" => "${tagUrl}"`);
 	return url(tagUrl);
 }
 

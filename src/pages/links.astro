@@ -7,31 +7,38 @@ import Markdown from "../components/misc/Markdown.astro";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
+
 const friendLinks = [
-  {
-    name: "当下",
-    description: "每月空瓶日记～",
-    avatar:
-      "https://image.ahalo.ren/games/_cache_images_05edeab0826178d152ba7833736e2610_webp-jpg-800-None.webp",
-    url: "https://blog.fueis.com/",
-  },
-  {
-    name: "Randy's Blog",
-    description: "爱写作与思考的程序员",
-    avatar: "https://image.ahalo.ren/games/randy blog.jpg",
-    url: "https://lutaonan.com/",
-  },
-  {
-    name: "静かな森",
-    description: "致虚极，守静笃。",
-    avatar: "https://image.ahalo.ren/games/sCdwsT.png",
-    url: "https://innei.in/",
-  },
+	{
+		name: "当下",
+		description: "每月空瓶日记～",
+		avatar:
+			"https://image.ahalo.ren/games/_cache_images_05edeab0826178d152ba7833736e2610_webp-jpg-800-None.webp",
+		url: "https://blog.fueis.com/",
+	},
+	{
+		name: "Randy's Blog",
+		description: "爱写作与思考的程序员",
+		avatar: "https://image.ahalo.ren/games/randy blog.jpg",
+		url: "https://lutaonan.com/",
+	},
+	{
+		name: "静かな森",
+		description: "致虚极，守静笃。",
+		avatar: "https://image.ahalo.ren/games/sCdwsT.png",
+		url: "https://innei.in/",
+	},
+	{
+		name: "rxliuli",
+		description: "这里是吾辈的博客，主要记录一些技术相关的东西呢 ヾ(＠^∇^＠)ノ",
+		avatar: "https://blog.rxliuli.com/medias/avatar.jpg",
+		url: "https://blog.rxliuli.com",
+	},
 ];
 const linksInfo = await getEntry("spec", "links-info");
 
 if (!linksInfo) {
-  throw new Error("Links info not found");
+	throw new Error("Links info not found");
 }
 
 const { Content } = await render(linksInfo);
@@ -41,7 +48,7 @@ const { Content } = await render(linksInfo);
   <div class="w-full h-full">
     <Markdown class="mt-4"><Content /></Markdown>
     <FriendLinks links={friendLinks} class="mt-4" />
-    <div id="waline"></div>
+    <div id="waline" />
   </div>
   <WalineScript />
 </MainGridLayout>
@@ -54,5 +61,9 @@ const { Content } = await render(linksInfo);
   .wl-panel {
     margin: 0;
     border: 1px solid var(--hue);
+  }
+
+  .wl-editor {
+    padding: 1rem;
   }
 </style>
