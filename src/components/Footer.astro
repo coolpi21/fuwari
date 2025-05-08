@@ -3,6 +3,12 @@
 import { profileConfig } from "../config";
 import { url } from "../utils/url-utils";
 const currentYear = new Date().getFullYear();
+
+// Calculate blog runtime since January 1, 2023
+const startDate = new Date("2023-04-02");
+const currentDate = new Date();
+const diffTime = Math.abs(currentDate.getTime() - startDate.getTime());
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 ---
 
 <!--<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">-->
@@ -11,13 +17,14 @@ const currentYear = new Date().getFullYear();
 <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6">
     <div class="transition text-50 text-sm text-center">
         &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name}. All Rights Reserved. /
+        Cc 已经跑了 <span class="font-bold text-[var(--primary)]">{diffDays}</span> 天 / 
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('rss.xml')}>RSS</a> /
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('sitemap-index.xml')}>Sitemap</a><br>
         Powered by
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a> &
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a> /
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://icp.gov.moe/?keyword=20237022">萌ICP备20237022号</a><br>
-       
+        
     </div>
 </div>
 
