@@ -7,11 +7,13 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				sans: [
-					"LxgwNeoZhiSong",
-					"Amstelvar",
-					"-apple-system",
-					"BlinkMacSystemFont",
-					"Roboto",
+					"PingFang SC",
+					"Hiragino Sans GB",
+					"Microsoft YaHei",
+					"STHeiti",
+					"WenQuanYi Micro Hei",
+					"Helvetica",
+					"Arial",
 					"sans-serif",
 					...defaultTheme.fontFamily.sans,
 				],

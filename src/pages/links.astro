@@ -41,5 +41,31 @@ const { Content } = await render(linksInfo);
   <div class="w-full h-full">
     <Markdown class="mt-4"><Content /></Markdown>
     <FriendLinks links={friendLinks} class="mt-4" />
+    <div id="waline"></div>
   </div>
 </MainGridLayout>
+
+<script is:inline defer type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    init({
+      el: '#waline',
+      serverURL: 'https://waline.clife.cafe',
+      path: window.location.pathname, // Keep path dynamic for different pages if this component is reused
+      dark: 'html[data-theme="dark"]', // Set initial theme based on stored preference or system setting
+      imageUploader: false,
+      emoji: false,
+      reaction: false,
+    });
+  });
+</script> 
+
+<style is:global>
+.wl-panel {
+  margin: 2rem 0 0 0;
+  border: 1px solid var(--hue);
+}
+</style>
+

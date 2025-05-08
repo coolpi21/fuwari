@@ -30,15 +30,19 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 	switch (theme) {
 		case LIGHT_MODE:
 			document.documentElement.classList.remove("dark");
+			document.documentElement.dataset.theme = "light";
 			break;
 		case DARK_MODE:
 			document.documentElement.classList.add("dark");
+			document.documentElement.dataset.theme = "dark";
 			break;
 		case AUTO_MODE:
 			if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 				document.documentElement.classList.add("dark");
+				document.documentElement.dataset.theme = "dark";
 			} else {
 				document.documentElement.classList.remove("dark");
+				document.documentElement.dataset.theme = "light";
 			}
 			break;
 	}
