@@ -24,7 +24,7 @@
 - PlayStation 5
 - AirPods 4
 - B&W Pi8
-- Apple Magic Trackpad
+- ~~Apple Magic Trackpad~~
 - ROG Swift OLED PG27UCDM
 - ROG Strix Scope RX II
 - Logitech G Pro X SUPERLIGHT 2
